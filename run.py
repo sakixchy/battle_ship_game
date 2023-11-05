@@ -9,17 +9,20 @@ def start_game ():
         if difficulty == 'e':
            difficulty_name = 'easy'
            board_size = 6
+           num_ships = 2
         elif difficulty == 'h':
              difficulty_name = 'hard'
              board_size = 10
+             num_ships = 4
         else:
              difficulty_name = 'medium'
+             num_ships = 3
 
         board = []
         for _ in range(board_size):
             row = ['_'] * 8
             board.append(row)
-        return board, difficulty_name
+        return board, difficulty_name, num_ships
 
     def print_board_with_coordinates(board):
         print("               A B C D E F G H")
@@ -27,23 +30,23 @@ def start_game ():
         for i, row in enumerate(board):
             print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
     
-    def place_ships(board):
-        for _ in range(2):
+    def place_ships(board, num_ships):
+        for _ in range(num_ships):
             while True:
-                x = random.randint(0, len(board) - 1)
-                y = random.randint(0, len(board[0]) - 1)
-                direction = random.choice(['horizontal', 'vertical'])
+                  x = random.randint(0, len(board) - 1)
+                  y = random.randint(0, len(board[0]) - 1)
+                  direction = random.choice(['horizontal', 'vertical'])
 
-                if direction == 'horizontal':
-                    if y <= len(board[0]) - 3 and all(board[x][y+i] == '_' for i in range(3)):
-                       for i in range(3):
-                        board[x][y+i] = 'X'
-                       break
-                elif direction == 'vertical':
-                    if x <= len(board) - 3 and all(board[x+i][y] == '_' for i in range(3)):
-                       for i in range(3):
-                        board[x+i][y] = 'X'
-                    break
+                  if direction == 'horizontal':
+                     if y <= len(board[0]) - 3 and all(board[x][y+i] == '_' for i in range(3)):
+                        for i in range(3):
+                            board[x][y+i] = 'U'
+                        break
+                  elif direction == 'vertical':
+                     if x <= len(board) - 3 and all(board[x+i][y] == '_' for i in range(3)):
+                        for i in range(3):
+                            board[x+i][y] = 'U'
+                        break
     print(place_ships)
 
     battleships_logo = """
@@ -83,9 +86,9 @@ def start_game ():
     print("""
                 BATTLESHIPS
           """)
-    board, game_difficulty = initialize_board(game_difficulty)
+    board, game_difficulty, num_ships = initialize_board(game_difficulty)
     
-    place_ships(board)
+    place_ships(board, num_ships)
     print_board_with_coordinates(board)
     print(" " * 25)
     print("- " * 25)
