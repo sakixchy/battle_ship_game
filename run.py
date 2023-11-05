@@ -1,4 +1,5 @@
 import time
+import random
 
 def start_game ():
     def initialize_board(difficulty):
@@ -21,11 +22,29 @@ def start_game ():
         return board, difficulty_name
 
     def print_board_with_coordinates(board):
-        print("   A B C D E F G H")
+        print("               A B C D E F G H")
 
         for i, row in enumerate(board):
-            print(f"{i + 1:2} ", end="")
-            print(" ".join(row))
+            print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+    
+    def place_ships(board):
+        for _ in range(2):
+            while True:
+                x = random.randint(0, len(board) - 1)
+                y = random.randint(0, len(board[0]) - 1)
+                direction = random.choice(['horizontal', 'vertical'])
+
+                if direction == 'horizontal':
+                    if y <= len(board[0]) - 3 and all(board[x][y+i] == '_' for i in range(3)):
+                       for i in range(3):
+                        board[x][y+i] = 'X'
+                       break
+                elif direction == 'vertical':
+                    if x <= len(board) - 3 and all(board[x+i][y] == '_' for i in range(3)):
+                       for i in range(3):
+                        board[x+i][y] = 'X'
+                    break
+    print(place_ships)
 
     battleships_logo = """
             ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
@@ -65,7 +84,8 @@ def start_game ():
                 BATTLESHIPS
           """)
     board, game_difficulty = initialize_board(game_difficulty)
- 
+    
+    place_ships(board)
     print_board_with_coordinates(board)
     print(" " * 25)
     print("- " * 25)
