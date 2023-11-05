@@ -1,3 +1,5 @@
+import time
+
 def start_game ():
     def initialize_board(difficulty):
 
@@ -39,10 +41,11 @@ def start_game ():
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
         "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
     game_difficulty = input("Your difficulty is: ")
-
-  
+    print("Preparing the board...")
+    time.sleep(2)
+    
     board = initialize_board(game_difficulty)
-
+ 
     for row in board:
         print(" ".join(row))
 
