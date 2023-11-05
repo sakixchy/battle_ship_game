@@ -44,7 +44,14 @@ def start_game ():
     player_name = input("Please, enter your name: ")
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
         "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
-    game_difficulty = input("Your difficulty is: ")
+    valid_difficluties = ['e', 'm', 'h']
+    while True:
+       game_difficulty = input("Your difficulty is: ")
+       if game_difficulty in valid_difficluties:
+         break
+       else:
+         print("Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. ")
+
     print("Preparing the board...")
     time.sleep(2)
     print("""
@@ -56,7 +63,7 @@ def start_game ():
         print("              " + " ".join(row))
     print(" " * 25)
     print("- " * 25)
-    print(f"PLAYER: {player_name}       Difficulty: {game_difficulty}")
+    print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
 
 
 start_game()
