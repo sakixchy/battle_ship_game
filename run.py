@@ -6,15 +6,19 @@ def start_game ():
         board_size = 8
 
         if difficulty == 'e':
-            board_size = 6
+           difficulty_name = 'easy'
+           board_size = 6
         elif difficulty == 'h':
-            board_size = 10
+             difficulty_name = 'hard'
+             board_size = 10
+        else:
+             difficulty_name = 'medium'
 
         board = []
         for _ in range(board_size):
             row = ['_'] * 8
             board.append(row)
-        return board
+        return board, difficulty_name
 
     battleships_logo = """
             ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
@@ -43,10 +47,16 @@ def start_game ():
     game_difficulty = input("Your difficulty is: ")
     print("Preparing the board...")
     time.sleep(2)
-    
-    board = initialize_board(game_difficulty)
+    print("""
+                BATTLESHIPS
+          """)
+    board, game_difficulty = initialize_board(game_difficulty)
  
     for row in board:
-        print(" ".join(row))
+        print("              " + " ".join(row))
+    print(" " * 25)
+    print("- " * 25)
+    print(f"PLAYER: {player_name}       Difficulty: {game_difficulty}")
+
 
 start_game()
