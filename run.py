@@ -20,6 +20,13 @@ def start_game ():
             board.append(row)
         return board, difficulty_name
 
+    def print_board_with_coordinates(board):
+        print("   A B C D E F G H")
+
+        for i, row in enumerate(board):
+            print(f"{i + 1:2} ", end="")
+            print(" ".join(row))
+
     battleships_logo = """
             ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
             / _ )  / _ |/_  __//_  __/  / /   / __/  / __/  / // /  /  _/  / _ \\  / __/
@@ -59,8 +66,7 @@ def start_game ():
           """)
     board, game_difficulty = initialize_board(game_difficulty)
  
-    for row in board:
-        print("              " + " ".join(row))
+    print_board_with_coordinates(board)
     print(" " * 25)
     print("- " * 25)
     print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
