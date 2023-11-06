@@ -1,8 +1,8 @@
-import time
-import random
+import time # Thi was used for loading effect when initialising the board.
+import random # This was used to generate random ships
 
-def start_game ():
-    def initialize_board(difficulty):
+def start_game (): # This starts the game
+    def initialize_board(difficulty): # This sets the board 
 
         board_size = 8
 
@@ -26,7 +26,7 @@ def start_game ():
 
         return board, difficulty_name, num_ships, board_size
 
-    def print_board_with_coordinates(board):
+    def print_board_with_coordinates(board): # This places coordinates aligned with the board
         col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + len(board[0])))
         print(f"               {col_labels}")
 
@@ -34,7 +34,7 @@ def start_game ():
            print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
 
     
-    def place_ships(board, num_ships):
+    def place_ships(board, num_ships): # This places random ships onto the board
         for _ in range(num_ships):
             while True:
                   x = random.randint(0, len(board) - 1)
@@ -52,7 +52,7 @@ def start_game ():
                             board[x+i][y] = 'U'
                         break
 
-    def parse_input(input_str, board_size):
+    def parse_input(input_str, board_size): # This checks the player input and validates in a loop into row and colum coordinates on game board
      while True:
         if (
             len(input_str) < 2 
@@ -68,15 +68,22 @@ def start_game ():
             row = int(input_str[1:]) - 1
             return row, col
     
-    def check_guess(x, y, board):
+    def check_guess(x, y, board):  # This checks if a guess matches a ship on the board
         if 0 <= x < len(board) and 0 <= y < len(board[0]):
             if board[x][y] == 'U':
                return True
             else:
+               board[x][y] = 'X'
                return False
         else:
            return False
-        
+   
+    def updated_board(board):
+      print("               A B C D E F G H")
+      for i, row in enumerate(board):
+        print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+
+
 
     print(place_ships)
 
@@ -101,32 +108,36 @@ def start_game ():
 
          """     
     print(game_instructions)                                      
-    player_name = input("Please, enter your name: ")
+    player_name = input("Please, enter your name: ") # Player name is typed here
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
             "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
     valid_difficluties = ['e', 'm', 'h']
     while True:
-          game_difficulty = input("Your difficulty is: ")
+          game_difficulty = input("Your difficulty is: ") # Player difficulty is chosen here
           if game_difficulty in valid_difficluties:
               break
           else:
               print("Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. ")
 
 
-    print("Preparing the board...")
+    print("Preparing the board...") # The board is being loaded here
     time.sleep(2)
     print("""
                     BATTLESHIPS
             """)
     board, game_difficulty, num_ships, board_size = initialize_board(game_difficulty)
 
+    def player_interface():
+
+         print(" " * 25)
+         print("- " * 25)
+         print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
+
     place_ships(board, num_ships)
     print_board_with_coordinates(board)
-    print(" " * 25)
-    print("- " * 25)
-    print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
+    player_interface()
 
-    while True:
+    while True: # This loop allows player to keep guessing to either hit or miss a ship and give feedback
        guess_input = input("Enter your guess: ")
        guess_x, guess_y = parse_input(guess_input, board_size)
         
@@ -135,6 +146,8 @@ def start_game ():
              print(f'You hit a ship at ({chr(guess_y + ord("A"))}{guess_x + 1})!')
           else:
              print(f'You missed at ({chr(guess_y + ord("A"))}{guess_x + 1}).')
+
+             updated_board(board)
           
 
 start_game()
