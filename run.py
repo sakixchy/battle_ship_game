@@ -11,24 +11,28 @@ def start_game ():
            board_size = 6
            num_ships = 2
         elif difficulty == 'h':
-             difficulty_name = 'hard'
-             board_size = 10
-             num_ships = 4
+           difficulty_name = 'hard'
+           board_size = 10
+           num_ships = 4
         else:
-             difficulty_name = 'medium'
-             num_ships = 3
+          difficulty_name = 'medium'
+          num_ships = 3
+          board_size = 8
 
         board = []
         for _ in range(board_size):
-            row = ['_'] * 8
-            board.append(row)
-        return board, difficulty_name, num_ships
+          row = ['_'] * board_size 
+          board.append(row)
+
+        return board, difficulty_name, num_ships, board_size
 
     def print_board_with_coordinates(board):
-        print("               A B C D E F G H")
+        col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + len(board[0])))
+        print(f"               {col_labels}")
 
         for i, row in enumerate(board):
-            print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+           print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+
     
     def place_ships(board, num_ships):
         for _ in range(num_ships):
@@ -48,21 +52,21 @@ def start_game ():
                             board[x+i][y] = 'U'
                         break
 
-    def parse_input(input_str):
-        while True:
-           if (
-            len(input_str) != 2 
+    def parse_input(input_str, board_size):
+     while True:
+        if (
+            len(input_str) < 2 
             or not input_str[0].isalpha() 
-            or not input_str[1].isdigit() 
-            or not ('A' <= input_str[0].upper() <= 'H') 
-            or not (1 <= int(input_str[1]) <= 6)
-            ):
-              print("Invalid input. Please enter a letter followed by a number within the range of board.")
-              input_str = input("Enter your guess: ")
-           else:
-              col = ord(input_str[0].upper()) - ord('A')
-              row = int(input_str[1]) - 1
-              return row, col
+            or not input_str[1:].isdigit() 
+            or not ('A' <= input_str[0].upper() <= chr(ord('A') + board_size - 1)) 
+            or not (1 <= int(input_str[1:]) <= board_size)
+        ):
+            print("Invalid input. Please enter a letter followed by a number within the range of board.")
+            input_str = input("Enter your guess: ")
+        else:
+            col = ord(input_str[0].upper()) - ord('A')
+            row = int(input_str[1:]) - 1
+            return row, col
     
     def check_guess(x, y, board):
         if 0 <= x < len(board) and 0 <= y < len(board[0]):
@@ -114,7 +118,7 @@ def start_game ():
     print("""
                     BATTLESHIPS
             """)
-    board, game_difficulty, num_ships = initialize_board(game_difficulty)
+    board, game_difficulty, num_ships, board_size = initialize_board(game_difficulty)
 
     place_ships(board, num_ships)
     print_board_with_coordinates(board)
@@ -124,13 +128,13 @@ def start_game ():
 
     while True:
        guess_input = input("Enter your guess: ")
-       guess_x, guess_y = parse_input(guess_input)
+       guess_x, guess_y = parse_input(guess_input, board_size)
         
        if guess_x is not None and guess_y is not None:
           if check_guess(guess_x, guess_y, board):
-               print(f'You hit a ship at ({guess_input})!')
+             print(f'You hit a ship at ({chr(guess_y + ord("A"))}{guess_x + 1})!')
           else:
-               print(f'You missed at ({guess_input}).')
-        
+             print(f'You missed at ({chr(guess_y + ord("A"))}{guess_x + 1}).')
+          
 
 start_game()
