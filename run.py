@@ -49,15 +49,30 @@ def start_game ():
                         break
 
     def parse_input(input_str):
-        col = ord(input_str[0].upper()) - ord('A')
-        row = int(input_str[1:]) - 1
-        return row, col
+        while True:
+           if (
+            len(input_str) != 2 
+            or not input_str[0].isalpha() 
+            or not input_str[1].isdigit() 
+            or not ('A' <= input_str[0].upper() <= 'H') 
+            or not (1 <= int(input_str[1]) <= 6)
+            ):
+              print("Invalid input. Please enter a letter followed by a number within the range of board.")
+              input_str = input("Enter your guess: ")
+           else:
+              col = ord(input_str[0].upper()) - ord('A')
+              row = int(input_str[1]) - 1
+              return row, col
     
-    def check_guess(x, y):
-        if board[x][y] == 'U':
-            return True
+    def check_guess(x, y, board):
+        if 0 <= x < len(board) and 0 <= y < len(board[0]):
+            if board[x][y] == 'U':
+               return True
+            else:
+               return False
         else:
-            return False
+           return False
+        
 
     print(place_ships)
 
@@ -111,11 +126,11 @@ def start_game ():
        guess_input = input("Enter your guess: ")
        guess_x, guess_y = parse_input(guess_input)
         
-       if check_guess(guess_x, guess_y):
-            print(f'You hit a ship at ({guess_input})!')
-       else:
-            print(f'You missed at ({guess_input}).')
+       if guess_x is not None and guess_y is not None:
+          if check_guess(guess_x, guess_y, board):
+               print(f'You hit a ship at ({guess_input})!')
+          else:
+               print(f'You missed at ({guess_input}).')
         
-    guess_input = input("Enter your guess: ")
 
 start_game()
