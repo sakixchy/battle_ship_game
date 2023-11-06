@@ -47,6 +47,18 @@ def start_game ():
                         for i in range(3):
                             board[x+i][y] = 'U'
                         break
+
+    def parse_input(input_str):
+        col = ord(input_str[0].upper()) - ord('A')
+        row = int(input_str[1:]) - 1
+        return row, col
+    
+    def check_guess(x, y):
+        if board[x][y] == 'U':
+            return True
+        else:
+            return False
+
     print(place_ships)
 
     battleships_logo = """
@@ -72,27 +84,38 @@ def start_game ():
     print(game_instructions)                                      
     player_name = input("Please, enter your name: ")
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
-        "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
+            "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
     valid_difficluties = ['e', 'm', 'h']
     while True:
-       game_difficulty = input("Your difficulty is: ")
-       if game_difficulty in valid_difficluties:
-         break
-       else:
-         print("Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. ")
+          game_difficulty = input("Your difficulty is: ")
+          if game_difficulty in valid_difficluties:
+              break
+          else:
+              print("Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. ")
+
 
     print("Preparing the board...")
     time.sleep(2)
     print("""
-                BATTLESHIPS
-          """)
+                    BATTLESHIPS
+            """)
     board, game_difficulty, num_ships = initialize_board(game_difficulty)
-    
+
     place_ships(board, num_ships)
     print_board_with_coordinates(board)
     print(" " * 25)
     print("- " * 25)
     print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
 
+    while True:
+       guess_input = input("Enter your guess: ")
+       guess_x, guess_y = parse_input(guess_input)
+        
+       if check_guess(guess_x, guess_y):
+            print(f'You hit a ship at ({guess_input})!')
+       else:
+            print(f'You missed at ({guess_input}).')
+        
+    guess_input = input("Enter your guess: ")
 
 start_game()
