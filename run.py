@@ -94,7 +94,7 @@ def start_game (): # This starts the game
           /____/ /_/ |_|/_/    /_/    /____//___/  /___/  /_//_/  /___/  /_/    /___/  
 
          """
-    print(battleships_logo)   
+    print(battleships_logo) # This displays Battleships game logo
     game_instructions = """
                                      INSTRUCTIONS
           There will be randomly generated ships on the board, the number of ships
@@ -107,7 +107,7 @@ def start_game (): # This starts the game
           The winner of the Battleships game is declared at the end.
 
          """     
-    print(game_instructions)                                      
+    print(game_instructions) # This displays the game instructions                                     
     player_name = input("Please, enter your name: ") # Player name is typed here
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
             "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
@@ -148,6 +148,7 @@ def start_game (): # This starts the game
              print(f'You missed at ({chr(guess_y + ord("A"))}{guess_x + 1}).')
 
              updated_board(board)
+             player_interface()
           
 
 start_game()
