@@ -77,8 +77,10 @@ def start_game (): # This starts the game
                return False
         else:
            return False
-   
-    def updated_board(board):
+
+    guesses_left = 10 # A miss or wrong guess will decrement by 1 
+    
+    def updated_board(board): # This iterates a new board after each guess
       print("               A B C D E F G H")
       for i, row in enumerate(board):
         print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
@@ -131,7 +133,7 @@ def start_game (): # This starts the game
 
          print(" " * 25)
          print("- " * 25)
-         print(f"PLAYER: {player_name}                   Difficulty: {game_difficulty}")
+         print(f"PLAYER: {player_name}  Wrong Guesses left:{guesses_left}  Difficulty: {game_difficulty}")
 
     place_ships(board, num_ships)
     print_board_with_coordinates(board)
@@ -145,10 +147,20 @@ def start_game (): # This starts the game
           if check_guess(guess_x, guess_y, board):
              print(f'You hit a ship at ({chr(guess_y + ord("A"))}{guess_x + 1})!')
           else:
+             guesses_left -= 1
              print(f'You missed at ({chr(guess_y + ord("A"))}{guess_x + 1}).')
+          
+          if guesses_left == 0:
+             print("You ran out of guesses. Game Over! You lost. ")
+             play_again = input("Do you want to play again? (yes/no)")
+             if play_again.lower() == "yes":
+                start_game()
+             else:
+               print(f"Thank you {player_name} for playing the Battleships game! ")
+               return
 
-             updated_board(board)
-             player_interface()
+       updated_board(board)
+       player_interface()
           
 
 start_game()
