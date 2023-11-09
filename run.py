@@ -80,8 +80,9 @@ def start_game (): # This starts the game
 
     guesses_left = 10 # A miss or wrong guess will decrement by 1 
     
-    def updated_board(board): # This iterates a new board after each guess
-      print("               A B C D E F G H")
+    def updated_board(board,board_size): # This iterates a new board after each guess
+      col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + board_size))
+      print(f"               {col_labels} ")
       for i, row in enumerate(board):
         print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
 
@@ -159,7 +160,7 @@ def start_game (): # This starts the game
                print(f"Thank you {player_name} for playing the Battleships game! ")
                return
 
-       updated_board(board)
+       updated_board(board, board_size)
        player_interface()
           
 
