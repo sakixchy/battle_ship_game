@@ -31,7 +31,8 @@ def start_game (): # This starts the game
         print(f"               {col_labels}")
 
         for i, row in enumerate(board):
-           print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+          modified_row = ['_' if cell == 'S' else cell for cell in row]
+          print(f"{' ' * 11}{i + 1:2}  " + " ".join(modified_row))
 
     
     def place_ships(board, num_ships): # This places random ships onto the board
@@ -44,12 +45,14 @@ def start_game (): # This starts the game
                   if direction == 'horizontal':
                      if y <= len(board[0]) - 3 and all(board[x][y+i] == '_' for i in range(3)):
                         for i in range(3):
-                            board[x][y+i] = 'U'
+                            board[x][y+i] = 'S'
+                            print(f"Placed ship at ({x}, {y}) horizontally")
                         break
                   elif direction == 'vertical':
                      if x <= len(board) - 3 and all(board[x+i][y] == '_' for i in range(3)):
                         for i in range(3):
-                            board[x+i][y] = 'U'
+                            board[x+i][y] = 'S'
+                            print(f"Placed ship at ({x}, {y}) vertically")
                         break
 
     def parse_input(input_str, board_size): # This checks the player input and validates in a loop into row and colum coordinates on game board
@@ -58,7 +61,7 @@ def start_game (): # This starts the game
             len(input_str) < 2 
             or not input_str[0].isalpha() 
             or not input_str[1:].isdigit() 
-            or not ('A' <= input_str[0].upper() <= chr(ord('A') + board_size - 1)) 
+            or not ('A' <= input_str[0].upper() <= chr(ord('A') + board_size - 1)) and not ('a' <= input_str[0].lower() <= chr(ord('a') + board_size - 1))
             or not (1 <= int(input_str[1:]) <= board_size)
         ):
             print("Invalid input. Please enter a letter followed by a number within the range of board.")
@@ -69,26 +72,30 @@ def start_game (): # This starts the game
             return row, col
     
     def check_guess(x, y, board):  # This checks if a guess matches a ship on the board
+        print(f"Checking guess at coordinates ({x}, {y})")
         if 0 <= x < len(board) and 0 <= y < len(board[0]):
-            if board[x][y] == 'U':
-               return True
-            else:
-               board[x][y] = 'X'
-               return False
+          if board[x][y] == 'S':
+             board[x][y] = 'U'
+             return True
+          elif board[x][y] == '_':
+            board[x][y] = 'X'
+            return False
+          else:
+            return False
         else:
-           return False
+            return False
 
     guesses_left = 10 # A miss or wrong guess will decrement by 1 
     
-    def updated_board(board,board_size): # This iterates a new board after each guess
+    def updated_board(board, board_size): # This iterates a new board after each guess
       col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + board_size))
       print(f"               {col_labels} ")
       for i, row in enumerate(board):
-        print(f"{' ' * 11}{i + 1:2}  " + " ".join(row))
+        print(f"{' ' * 11}{i + 1:2}  " + " ".join('_' if cell == 'S' else cell for cell in row))
 
 
 
-    print(place_ships)
+   
 
     battleships_logo = """
             ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
@@ -105,9 +112,8 @@ def start_game (): # This starts the game
           level. You as the player will be given turns to sink the opponent's ship
           in an ultimate battle! You will have to guess where the opponent's ships
           are located on the board by entering the correct coordinates  to  either
-          hit or be missed of hitting.The opponent gets to make their move and the
-          same process repeats,until a player sinks all of their opponent's ships.
-          The winner of the Battleships game is declared at the end.
+          hit or be missed of hitting. After failing to sink all the ships  within
+          the given guesses, you will lose!  So try to hit and sink all the ships!
 
          """     
     print(game_instructions) # This displays the game instructions                                     
@@ -153,7 +159,7 @@ def start_game (): # This starts the game
           
           if guesses_left == 0:
              print("You ran out of guesses. Game Over! You lost. ")
-             play_again = input("Do you want to play again? (yes/no)")
+             play_again = input("Do you want to play again? (yes/no): ")
              if play_again.lower() == "yes":
                 start_game()
              else:
