@@ -1,10 +1,10 @@
 import time # Thi was used for loading effect when initialising the board.
 import random # This was used to generate random ships
 
-def start_game (): # This starts the game
-    def initialize_board(difficulty): # This sets the board 
+def initialize_board(difficulty): # This sets the board 
       
         board_size = 8
+        ships = []
 
         if difficulty == 'e':
            difficulty_name = 'easy'
@@ -24,10 +24,9 @@ def start_game (): # This starts the game
           row = ['_'] * board_size 
           board.append(row)
 
-        ships = []
         return board, difficulty_name, num_ships, board_size, ships 
 
-    def print_board_with_coordinates(board): # This places coordinates aligned with the board
+def print_board_with_coordinates(board): # This places coordinates aligned with the board
         col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + len(board[0])))
         print(f"               {col_labels}")
 
@@ -35,8 +34,7 @@ def start_game (): # This starts the game
           modified_row = ['_' if cell == 'S' else cell for cell in row]
           print(f"{' ' * 11}{i + 1:2}  " + " ".join(modified_row))
 
-    
-    def place_ships(board, num_ships, ships): # This places random ships onto the board
+def place_ships(board, num_ships, ships): # This places random ships onto the board
       for _ in range(num_ships):
           while True:
                   x = random.randint(0, len(board) - 1)
@@ -56,8 +54,7 @@ def start_game (): # This starts the game
                             ships.append({'positions': [(x+i, y) for i in range(3)], 'hits': 0})
                         break
 
-    
-    def parse_input(input_str, board_size): # This checks the player input and validates in a loop into row and colum coordinates on game board
+def parse_input(input_str, board_size): # This checks the player input and validates in a loop into row and colum coordinates on game board
      while True:
         if (
             len(input_str) < 2 
@@ -73,7 +70,7 @@ def start_game (): # This starts the game
             row = int(input_str[1:]) - 1
             return row, col
     
-    def check_guess(x, y, board, ships):  # This checks if a guess matches a ship on the board
+def check_guess(x, y, board, ships):  # This checks if a guess matches a ship on the board
         if 0 <= x < len(board) and 0 <= y < len(board[0]):
           if board[x][y] == 'S':
             for ship in ships:
@@ -89,16 +86,14 @@ def start_game (): # This starts the game
             board[x][y] = 'X'
             return False
         return False
+
+def check_if_ship_sunk(ship, board): # This checks if a ship has sunk
+     return all(board[x][y] == 'U' for x, y in ship['positions'])
     
-    def check_if_ship_sunk(ship): # This checks if a ship has sunk
-        return all(board[x][y] == 'U' for x, y in ship['positions'])
-    
-    def check_if_all_ships_sunk(ships): # This check if all ships have sunk
-        return all(check_if_ship_sunk(ship) for ship in ships)
-    
-    guesses_left = 10 # A miss or wrong guess will decrement by 1 
-    
-    def updated_board(board, board_size): # This iterates a new board after each guess
+def check_if_all_ships_sunk(ships, board): # This check if all ships have sunk
+     return all(check_if_ship_sunk(ship, board) for ship in ships)
+
+def updated_board(board, board_size): # This iterates a new board after each guess
       print("""
       """)
       col_labels = " ".join(chr(i) for i in range(ord('A'), ord('A') + board_size))
@@ -106,16 +101,22 @@ def start_game (): # This starts the game
       for i, row in enumerate(board):
         print(f"{' ' * 11}{i + 1:2}  " + " ".join('_' if cell == 'S' else cell for cell in row))
 
+def player_interface(player_name, game_difficulty, guesses_left): # This shows the player info
 
+    print(" " * 25)
+    print("- " * 25)
+    print(f"PLAYER: {player_name}  Wrong Guesses left:{guesses_left}  Difficulty: {game_difficulty}")
 
-   
+def start_game (): # This starts the game
 
+    guesses_left = 10 # A miss or wrong guess will decrement by 1 
+    
     battleships_logo = """
-            ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
+             ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
             / _ )  / _ |/_  __//_  __/  / /   / __/  / __/  / // /  /  _/  / _ \\  / __/
            / _  | / __ | / /    / /    / /__ / _/   _\\ \\   / _  /  _/ /   / ___/ _\\ \\  
           /____/ /_/ |_|/_/    /_/    /____//___/  /___/  /_//_/  /___/  /_/    /___/  
-
+    
          """
     print(battleships_logo) # This displays Battleships game logo
     game_instructions = """
@@ -133,10 +134,10 @@ def start_game (): # This starts the game
     player_name = input("Please, enter your name: ") # Player name is typed here
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
             "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
-    valid_difficluties = ['e', 'm', 'h']
+    valid_difficulties = ['e', 'm', 'h']
     while True:
           game_difficulty = input("Your difficulty is: ") # Player difficulty is chosen here
-          if game_difficulty in valid_difficluties:
+          if game_difficulty in valid_difficulties:
               break
           else:
               print("Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. ")
@@ -150,15 +151,9 @@ def start_game (): # This starts the game
 
     board, game_difficulty, num_ships, board_size, ships = initialize_board(game_difficulty)
 
-    def player_interface():
-
-         print(" " * 25)
-         print("- " * 25)
-         print(f"PLAYER: {player_name}  Wrong Guesses left:{guesses_left}  Difficulty: {game_difficulty}")
-
     place_ships(board, num_ships, ships)
     print_board_with_coordinates(board)
-    player_interface()
+    player_interface(player_name, game_difficulty, guesses_left)
 
     while True: # This loop allows player to keep guessing to either hit or miss a ship and give feedback
        
@@ -167,11 +162,11 @@ def start_game (): # This starts the game
         
          if guess_x is not None and guess_y is not None:
               if check_guess(guess_x, guess_y, board, ships):
-                if not check_if_ship_sunk([ship for ship in ships if (guess_x, guess_y) in ship['positions']][0]):
+                if not check_if_ship_sunk([ship for ship in ships if (guess_x, guess_y) in ship['positions']][0], board):
                     print(f'You hit a ship at ({chr(guess_y + ord("A"))}{guess_x + 1})!')
                 else:
                     print("Ship sunk!")
-                    if check_if_all_ships_sunk(ships):
+                    if check_if_all_ships_sunk(ships, board):
                        print("Congratulations! You sank all the ships. You won!")
                        return
               else:
@@ -186,8 +181,8 @@ def start_game (): # This starts the game
                  else:
                      print(f"Thank you {player_name} for playing the Battleships game! ")
                      return
-         updated_board(board, board_size)
-         player_interface()
+              updated_board(board, board_size)
+              player_interface(player_name, game_difficulty, guesses_left)
 
 
 start_game()
