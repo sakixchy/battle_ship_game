@@ -128,7 +128,14 @@ def start_game (): # This starts the game
                     \\              < < <       |    
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     """
-    print(battleship_ascii)
+    print(battleship_ascii) # This shows the battleship art
+    
+    play_option = "" # store whats been written in here by the player
+    while play_option.lower() != "play": # This checks whether the user entered appropriate command to start thegame.
+          play_option = input("To start the game, please enter 'play': ")
+          if play_option.lower() != "play":
+             print("Invalid input. Please enter 'play' to start the game.")
+
     game_instructions = """
                              INSTRUCTIONS
     There will be randomly generated ships on the board, the number of ships
