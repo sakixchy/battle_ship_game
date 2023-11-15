@@ -1,4 +1,4 @@
-import time # Thi was used for loading effect when initialising the board.
+import time # This was used for loading effect when initialising the board.
 import random # This was used to generate random ships
 
 def initialize_board(difficulty): # This sets the board 
@@ -130,8 +130,13 @@ def start_game (): # This starts the game
           the given guesses, you will lose!  So try to hit and sink all the ships!
 
          """     
-    print(game_instructions) # This displays the game instructions                                     
-    player_name = input("Please, enter your name: ") # Player name is typed here
+    print(game_instructions) # This displays the game instructions     
+    while True:                            
+          player_name = input("Please, enter your name: ") # Player name is typed here
+          if player_name:
+             break
+          else:
+            print("You must enter a name.")
     print(f"Welcome {player_name}! \nPlease choose your difficulty level:\n"
             "Enter 'e' for easy, 'm' for medium, or 'h' for hard.\n")
     valid_difficulties = ['e', 'm', 'h']
@@ -165,7 +170,6 @@ def start_game (): # This starts the game
                 if not check_if_ship_sunk([ship for ship in ships if (guess_x, guess_y) in ship['positions']][0], board):
                     print(f'You hit a ship at ({chr(guess_y + ord("A"))}{guess_x + 1})!')
                 else:
-                    print("Ship sunk!")
                     if check_if_all_ships_sunk(ships, board):
                        print("Congratulations! You sank all the ships. You won!")
                        return
