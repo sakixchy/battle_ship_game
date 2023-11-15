@@ -104,13 +104,13 @@ def updated_board(board, board_size): # This iterates a new board after each gue
 def player_interface(player_name, game_difficulty, guesses_left): # This shows the player info
 
     print(" " * 25)
-    print("- " * 25)
+    print("- " * 30)
     print(f"PLAYER: {player_name}  Wrong Guesses left:{guesses_left}  Difficulty: {game_difficulty}")
 
 def start_game (): # This starts the game
 
     guesses_left = 10 # A miss or wrong guess will decrement by 1 
-    guessed_coordinates = []
+    guessed_coordinates = [] # This keeps track of already entered coordinates.
     
     battleships_logo = """
     ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
