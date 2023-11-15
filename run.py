@@ -113,13 +113,22 @@ def start_game (): # This starts the game
     guessed_coordinates = [] # This keeps track of already entered coordinates.
     
     battleships_logo = """
-    ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
-   / _ )  / _ |/_  __//_  __/  / /   / __/  / __/  / // /  /  _/  / _ \\  / __/
-  / _ \  / __ | / /    / /    / /__ / _/   _\\ \\   / _  /  _/ /   / ___/ _\\ \\  
- /____/ /_/ |_|/_/    /_/    /____//___/  /___/  /_//_/  /___/  /_/    /___/  
-    
+             ____        _   _   _           _     _           
+            | __ )  __ _| |_| |_| | ___  ___| |__ (_)_ __  ___ 
+            |  _ \\ / _` | __| __| |/ _ \\/ __| '_ \\| | '_ \\/ __|
+            | |_) | (_| | |_| |_| |  __/\\__ \\ | | | | |_) \\__ \\
+            |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/|___/
+                                                    |_|               
     """
     print(battleships_logo) # This displays Battleships game logo
+    battleship_ascii = """
+                                        __/___            
+                            _____/______|           
+                    _______/_____\\_______\\_____     
+                    \\              < < <       |    
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    """
+    print(battleship_ascii)
     game_instructions = """
                              INSTRUCTIONS
     There will be randomly generated ships on the board, the number of ships
