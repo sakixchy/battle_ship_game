@@ -110,6 +110,7 @@ def player_interface(player_name, game_difficulty, guesses_left): # This shows t
 def start_game (): # This starts the game
 
     guesses_left = 10 # A miss or wrong guess will decrement by 1 
+    guessed_coordinates = []
     
     battleships_logo = """
     ___    ___  ______ ______   __    ____   ____   __ __   ____   ___    ____
@@ -164,6 +165,12 @@ def start_game (): # This starts the game
        
          guess_input = input("Enter your guess: ")
          guess_x, guess_y = parse_input(guess_input, board_size)
+
+         if (guess_x, guess_y) in guessed_coordinates:
+            print("You have already guessed these coordinates. Please enter new ones.")
+            continue
+
+         guessed_coordinates.append((guess_x, guess_y))
         
          if guess_x is not None and guess_y is not None:
               if check_guess(guess_x, guess_y, board, ships):
