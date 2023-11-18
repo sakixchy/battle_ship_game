@@ -19,3 +19,8 @@ ___
 - As a player, I can utilize vaious input methods to determine an outcome.
 - As a player, I am given a game over or congratulatory message upon conditions being met.
 ___
+
+# Game Logic Flowchart 
+![an image of flowchart for game logic](assets/images/battle-ships-flowchart.png) 
+The game development process was optimized using this flowchart, providing a strong foundation for the Battleships game logic.
+___
