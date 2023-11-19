@@ -24,3 +24,33 @@ ___
 ![an image of flowchart for game logic](assets/images/battle-ships-flowchart.png) 
 The game development process was optimized using this flowchart, providing a strong foundation for the Battleships game logic.
 ___
+
+# Features
+![an image of ascii art](assets/images/ascii-art.png)
+These are ASCII art to give the start menu some visual flare. <br>
+The title of the game and thr battleship art is written in ASCII format, <br>
+therefore meeting the theme of this project.
+
+![an image of play input field](assets/images/play-input.png)
+The user has to type in 'play' to enter into game state, <br>
+otherwise the user can't start the game. This makes the the start menu less cluttered, <br>
+while providing a seamless transition to game enviroment from start menu. <br>
+The keyword 'play' can be typed in lowercase or uppercase, anything else will trigger an invalid input.
+
+![an image of game instructions](assets/images/game-instructions.jpeg)
+The users are greeted with the game instructions displayed in the initila text box. <br>
+This section serves as an introduction to the game, informing the users of objectives, rules and outcome.
+
+![an image of name input field](assets/images/name-input.jpeg)
+Below the instructions section is the player name input field. The user may enter their name as they please,
+but can't leave it empty or else a validation erorr triggers, asking users to enter a name.<br>
+
+![an image of difficulty level](assets/images/difficulty-level.jpeg)
+After inputting their name, the user is greeted by their provided name. At this point, the user has the <br>
+option to select their preferred difficulty level for gameplay. <br>
+- 'e' for easy
+- 'm' for medium
+- 'h' for hard
+Any other input will cause a validation error and requesting user to type again.
+
+
