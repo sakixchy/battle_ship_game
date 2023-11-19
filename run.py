@@ -195,6 +195,9 @@ def start_game (): # This starts the game
                 else:
                     if check_if_all_ships_sunk(ships, board):
                        print("Congratulations! You sank all the ships. You won!")
+                       print("The game will now restart...")
+                       time.sleep(6)
+                       start_game()
                        return
               else:
                  guesses_left -= 1
