@@ -184,7 +184,10 @@ def start_game():
     # store whats been written in here by the player
     play_option = ""
 
-    # This checks whether the user entered appropriate command to start thegame.
+    """
+    This checks whether the user entered appropriate
+    command to start the game.
+    """
     while play_option.lower() != "play":
         play_option = input("To start the game, please enter 'play': ")
         if play_option.lower() != "play":
@@ -204,7 +207,8 @@ def start_game():
     # This displays the game instructions
     print(game_instructions)
     while True:
-        player_name = input("Please, enter your name: ")  # Player name is typed here
+        # Player name is typed here
+        player_name = input("Please, enter your name: ")
         if player_name:
             break
         else:
@@ -221,7 +225,8 @@ def start_game():
             break
         else:
             print(
-                "Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. "
+                "Invalid input, please enter 'e' for easy,"
+                "'m' for medium  or 'h' for hard. "
             )
     # The board is being loaded here
     print("Preparing the board...")
@@ -240,14 +245,13 @@ def start_game():
     print_board_with_coordinates(board)
     player_interface(player_name, game_difficulty, guesses_left)
 
-    while (
-        True
-    ):  # This loop allows player to keep guessing to either hit or miss a ship and give feedback
+    while (True):
         guess_input = input("Enter your guess: ")
         guess_x, guess_y = parse_input(guess_input, board_size)
 
         if (guess_x, guess_y) in guessed_coordinates:
-            print("You have already guessed these coordinates. Please enter new ones.")
+            print("You have already guessed these coordinates."
+                  "Please enter new ones.")
             continue
 
         guessed_coordinates.append((guess_x, guess_y))
