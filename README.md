@@ -85,15 +85,28 @@ ___
 ## Manual Testing
 | Browser Testing | Supported |
 |-----------------|-----------|
-| Chrome          | &check;  |
-| Firefox         | &check;  |
+| Chrome          | &check;   |
+| Firefox         | &check;   |
 | Safari          | It doesn't contain the necessary js. script to run the app. |
 
 
 ### Validator Testing
-[an image of pep8 validator](assets/images/pep-eight-validator.jpeg) <br>
+![an image of pep8 validator](assets/images/pep-eight-validator.jpeg) <br>
 There were some errors regarding whitespaces & length of code being over 79 characters long, <br>
 fortunetely they have all been resolved.
 
+### Gameplay
+| Scenario | Action | Expected Outcome | Actual Outcome |
+|----------|--------|------------------|----------------|
+| Initialize of the game | Player types in the keyword 'play'| The game content is being displayed | True |
+| Player Registration | Player enters their name | Welcome message with the player's name is displayed | True |
+| Selecting Game Difficulty | Player enters a specific letter | The board initializes with a specific layout corresponding to the chosen difficulty | True |
+| Guessing the ships | Player enters a set of coordinates | The board updates with the mark of 'U' if the coordinates correspond to a ship, otherwise 'X' as miss. | True |
+| Reguessing the coordinates | Player enters the same coordinates multiple times | An invalid message triggers | True |
+| Entering Far-Reaching coordinates | Player enters coordinates outside the game board | An invalid message triggers | True |
+| Entering Invalid coordinates | Player enters just anything not related to game | An invalid message triggers | True |
+| Ship sinks after 3rd hit | Player hits all three parts of the ship | Ship sunk message triggers | True |
+| Game loss | Player uses all remaining wrong guesses | The game ends and displays a 'Game Over' message with options to start over or exit | True |
+| Game win | Player successfully sinks all ships | The game ends with a congratulatory message and starts over the game | True |
 
 
