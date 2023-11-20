@@ -89,5 +89,11 @@ ___
 | Firefox         | &check;  |
 | Safari          | It doesn't contain the necessary js. script to run the app. |
 
- 
+
+### Validator Testing
+[an image of pep8 validator](assets/images/pep-eight-validator.jpeg) <br>
+There were some errors regarding whitespaces & length of code being over 79 characters long, <br>
+fortunetely they have all been resolved.
+
+
 
