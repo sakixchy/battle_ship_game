@@ -1,8 +1,12 @@
-import time  # This was used for loading effect when initialising the board.
-import random  # This was used to generate random ships
+# This was used for loading effect when initialising the board.
+import time
+
+# This was used to generate random ships
+import random
 
 
-def initialize_board(difficulty):  # This sets the board
+# This sets the board
+def initialize_board(difficulty):
     board_size = 8
     ships = []
 
@@ -27,10 +31,13 @@ def initialize_board(difficulty):  # This sets the board
     return board, difficulty_name, num_ships, board_size, ships
 
 
+# This places coordinates aligned with the board
 def print_board_with_coordinates(
     board,
-):  # This places coordinates aligned with the board
-    col_labels = " ".join(chr(i) for i in range(ord("A"), ord("A") + len(board[0])))
+):
+    col_labels = " ".join(
+        chr(i) for i in range(ord("A"), ord("A") + len(board[0]))
+    )
     print(f"               {col_labels}")
 
     for i, row in enumerate(board):
@@ -38,7 +45,8 @@ def print_board_with_coordinates(
         print(f"{' ' * 11}{i + 1:2}  " + " ".join(modified_row))
 
 
-def place_ships(board, num_ships, ships):  # This places random ships onto the board
+# This places random ships onto the board
+def place_ships(board, num_ships, ships):
     for _ in range(num_ships):
         while True:
             x = random.randint(0, len(board) - 1)
@@ -71,9 +79,8 @@ def place_ships(board, num_ships, ships):  # This places random ships onto the b
                     break
 
 
-def parse_input(
-    input_str, board_size
-):  # This checks the player input and validates in a loop into row and colum coordinates on game board
+# This checks the player input and validates in a loop into row and colum coordinates on game board
+def parse_input(input_str, board_size):
     while True:
         if (
             len(input_str) < 2
@@ -93,9 +100,8 @@ def parse_input(
             return row, col
 
 
-def check_guess(
-    x, y, board, ships
-):  # This checks if a guess matches a ship on the board
+# This checks if a guess matches a ship on the board
+def check_guess(x, y, board, ships):
     if 0 <= x < len(board) and 0 <= y < len(board[0]):
         if board[x][y] == "S":
             for ship in ships:
@@ -113,15 +119,18 @@ def check_guess(
     return False
 
 
-def check_if_ship_sunk(ship, board):  # This checks if a ship has sunk
+# This checks if a ship has sunk
+def check_if_ship_sunk(ship, board):
     return all(board[x][y] == "U" for x, y in ship["positions"])
 
 
-def check_if_all_ships_sunk(ships, board):  # This check if all ships have sunk
+# This check if all ships have sunk
+def check_if_all_ships_sunk(ships, board):
     return all(check_if_ship_sunk(ship, board) for ship in ships)
 
 
-def updated_board(board, board_size):  # This iterates a new board after each guess
+# This iterates a new board after each guess
+def updated_board(board, board_size):
     print(
         """
       """
@@ -135,9 +144,8 @@ def updated_board(board, board_size):  # This iterates a new board after each gu
         )
 
 
-def player_interface(
-    player_name, game_difficulty, guesses_left
-):  # This shows the player info
+# This shows the player info
+def player_interface(player_name, game_difficulty, guesses_left):
     print(" " * 25)
     print("- " * 30)
     print(
@@ -145,9 +153,13 @@ def player_interface(
     )
 
 
-def start_game():  # This starts the game
-    guesses_left = 10  # A miss or wrong guess will decrement by 1
-    guessed_coordinates = []  # This keeps track of already entered coordinates.
+# This starts the game
+def start_game():
+    # A miss or wrong guess will decrement by 1
+    guesses_left = 10
+
+    # This keeps track of already entered coordinates.
+    guessed_coordinates = []
 
     battleships_logo = """
              ____        _   _   _           _     _           
@@ -157,7 +169,8 @@ def start_game():  # This starts the game
             |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/|___/
                                                     |_|               
     """
-    print(battleships_logo)  # This displays Battleships game logo
+    # This displays Battleships game logo
+    print(battleships_logo)
     battleship_ascii = """
                                         __/___            
                             _____/______|           
@@ -165,12 +178,14 @@ def start_game():  # This starts the game
                     \\              < < <       |    
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     """
-    print(battleship_ascii)  # This shows the battleship art
+    # This shows the battleship art
+    print(battleship_ascii)
 
-    play_option = ""  # store whats been written in here by the player
-    while (
-        play_option.lower() != "play"
-    ):  # This checks whether the user entered appropriate command to start thegame.
+    # store whats been written in here by the player
+    play_option = ""
+
+    # This checks whether the user entered appropriate command to start thegame.
+    while play_option.lower() != "play":
         play_option = input("To start the game, please enter 'play': ")
         if play_option.lower() != "play":
             print("Invalid input. Please enter 'play' to start the game.")
@@ -186,7 +201,8 @@ def start_game():  # This starts the game
     the given guesses, you will lose!  So try to hit and sink all the ships!
 
          """
-    print(game_instructions)  # This displays the game instructions
+    # This displays the game instructions
+    print(game_instructions)
     while True:
         player_name = input("Please, enter your name: ")  # Player name is typed here
         if player_name:
@@ -199,17 +215,16 @@ def start_game():  # This starts the game
     )
     valid_difficulties = ["e", "m", "h"]
     while True:
-        game_difficulty = input(
-            "Your difficulty is: "
-        )  # Player difficulty is chosen here
+        # Player difficulty is chosen here
+        game_difficulty = input("Your difficulty is: ")
         if game_difficulty in valid_difficulties:
             break
         else:
             print(
                 "Invalid input, please enter 'e' for easy, 'm' for medium  or 'h' for hard. "
             )
-
-    print("Preparing the board...")  # The board is being loaded here
+    # The board is being loaded here
+    print("Preparing the board...")
     time.sleep(2)
     print(
         """
@@ -252,7 +267,7 @@ def start_game():  # This starts the game
                     if check_if_all_ships_sunk(ships, board):
                         print("Congratulations! You sank all the ships. You won!")
                         print("The game will now restart...")
-                        time.sleep(6)
+                        time.sleep(4)
                         start_game()
                         return
             else:

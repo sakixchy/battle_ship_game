@@ -83,8 +83,8 @@ ___
 
 # Testing 
 ## Manual Testing
-               Browser Testing
- |--------------------|------------------|
+ |             Browser Testing           |
+ |---------------------------------------|
  |        Chrome      |       &check;    |  
  |        Firefox     |       &check;    |
  |        Safari      | It doesn't contain the necessary js. script to run the app.|
