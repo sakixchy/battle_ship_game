@@ -109,4 +109,9 @@ fortunetely they have all been resolved.
 | Game loss | Player uses all remaining wrong guesses | The game ends and displays a 'Game Over' message with options to start over or exit | True |
 | Game win | Player successfully sinks all ships | The game ends with a congratulatory message and starts over the game | True |
 
+## Bug
+![an image of bug being  encountered](assets/images/bug-found.jpeg) <br>
+While testing the game, i came across this bug. After successfully sinking all the ships, the game  still displays the board and allows further player input. I solved this issue by calling out start game function to game win statement.
+
+
 
