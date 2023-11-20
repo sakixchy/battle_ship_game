@@ -79,5 +79,15 @@ The player will be congratulated after sinking all the ships. This message marks
 ![an image of game in a losing state](assets/images/game-lost.jpeg) <br>
 The player will be informed of losing the game, and given options to start over or exit out of the game. <br>
 
+___
 
+# Testing 
+## Manual Testing
+               Browser Testing
+ |--------------------|------------------|
+ |        Chrome      |       &check;    |  
+ |        Firefox     |       &check;    |
+ |        Safari      | It doesn't contain the necessary js. script to run the app.|
+
+ 
 
