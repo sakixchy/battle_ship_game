@@ -26,10 +26,12 @@ The game development process was optimized using this flowchart, providing a str
 ___
 
 # Features
+## ASCII Images
 ![an image of ascii art](assets/images/ascii-art.png) <br>
 These are ASCII art to give the start menu some visual flare. <br>
 The title of the game and thr battleship art is written in ASCII format, therefore meeting the theme of this project.
 
+## Game Interaction
 ![an image of play input field](assets/images/play-input.png) <br>
 The user has to type in 'play' to enter into game state, <br>
 otherwise the user can't start the game. This makes the the start menu less cluttered, <br>
@@ -50,6 +52,17 @@ option to select their preferred difficulty level for gameplay. <br>
 - 'e' for easy
 - 'm' for medium
 - 'h' for hard   <br>
+
 Any other input will cause a validation error and requesting user to type again.
 
+![an image of game interface](assets/images/game-interface.jpeg) <br>
+This interface provides all the key elements essential for a intuitive battleships gaming experience. <br>
+These include: 
+- Game board : Visual representation of the battlefield where the player can track of hits or misses on ships.
+- Coordinates label : Indicates the accurate coordinates for the players to make guesses.
+- Wrong guesses counter : Decreases by 1 with each incorrect guesses until it reaches 0, then the game ends.
+- Difficulty level: Reminds player of the chosen level.
+- Player input field for guessing ships: Allows players to enter coordinates within the board's range.
+
+![]
 
