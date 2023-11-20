@@ -64,5 +64,20 @@ These include:
 - Difficulty level: Reminds player of the chosen level.
 - Player input field for guessing ships: Allows players to enter coordinates within the board's range.
 
-![]
+![an image of ship being missed displayed](assets/images/ship-miss.jpeg) <br>
+The player will be informed with a messsage on a ship being missed with the appropriate coordinates. <br>
+
+![an image of ship being hit displayed](assets/images/ship-hit.jpeg) <br>
+The player will be informed with a messsage on a ship being hit with the appropriate coordinates. <br>
+
+![an image of ship being sunk displayed](assets/images/ship-sunk.jpeg) <br>
+The player will be informed with a messsage on a ship being sunk. <br>
+
+![an image of game winning's state](assets/images/game-won.jpeg) <br>
+The player will be congratulated after sinking all the ships. This message marks the end of the game.
+
+![an image of game in a losing state](assets/images/game-lost.jpeg) <br>
+The player will be informed of losing the game, and given options to start over or exit out of the game. <br>
+
+
 
