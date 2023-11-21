@@ -127,7 +127,7 @@ It looks like a "nine-dot" button.
 7. From the dropdown menu, click on "Create new app".
 8. Give a unique name for your app and ensure it hasn't been used before.
 9. Choose a region for your app based on your location.
-10. Finally, click on "Create app".
+10. Finally, click on "Create app". <br>
 You have successfully created the app required for your deployment.
 11. Now go to Settings from your app in the dashboard.
 12. Scroll down untill "Config Vars" section appears, click on "reveal Config Vars".
@@ -142,5 +142,13 @@ You have successfully created the app required for your deployment.
 19. Scroll down to Deployment method section.
 20. Click "Github" to connect the game with battleships repository with Heroku.
 21. Once the repository is connected, you can choose to manually deploy from a branch <br> 
-or enable automatic deployments from a specific branch.
+or enable automatic deployments from a specific branch. <br>
 You have now successfully deployed the battleships game to Heroku.
+
+# Technologies Used
+- **Python** to develop the game.
+- **Gitpod** to setup the coding enviroment
+- **Github** for repository hosting.
+- **Heroku** for deploying the game.
+- **Lucidchart** for making the flowchart.
+- **Pip Black** for formatting the code to meet pep8 sstandards.
