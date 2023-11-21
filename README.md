@@ -111,7 +111,36 @@ fortunetely they have all been resolved.
 
 ## Bug
 ![an image of bug being  encountered](assets/images/bug-found.jpeg) <br>
-While testing the game, i came across this bug. After successfully sinking all the ships, the game  still displays the board and allows further player input. I solved this issue by calling out start game function to game win statement.
+While testing the game, i came across this bug. After successfully sinking all the ships, the game  still displays the board and allows further player input. I solved this issue by calling out `start_game` function to if statement.
 
+# Deployment
+This repository contains a Battleship game developed using Python. <br>
+Follow these steps to deploy the game to Heroku.
 
-
+1. Create an account on Heroku if you haven't already otherwise log into your account.
+2. After logging in, you will be dierected to Heroku dashboard.
+3. In the dashboard, locate the navigation menu on the top right corner. <br>
+It looks like a "nine-dot" button.
+4. Click on the "nine-dot" button to reveal a dropdown menu.
+5. Click on the first button called "Dashboard".
+6. Locate and click the "New" button to reveal the dropdown menu.
+7. From the dropdown menu, click on "Create new app".
+8. Give a unique name for your app and ensure it hasn't been used before.
+9. Choose a region for your app based on your location.
+10. Finally, click on "Create app".
+You have successfully created the app required for your deployment.
+11. Now go to Settings from your app in the dashboard.
+12. Scroll down untill "Config Vars" section appears, click on "reveal Config Vars".
+13. Assign the key "PORT" with the value "8000" next to it.
+14. Click on Add to save changes.
+15. Scroll a bit further down until "Buildpacks" section appears.
+16. Click on "Add Buildpack".
+17. In the modal that appears subsequently, add the following buildpacks in these order:
+   - Click "Python" to add the Python buildpack.
+   - Click "Nodejs" to add the Nodejs buildpack.
+18. Go to Deploy menu in frpm the dashboard
+19. Scroll down to Deployment method section.
+20. Click "Github" to connect the game with battleships repository with Heroku.
+21. Once the repository is connected, you can choose to manually deploy from a branch <br> 
+or enable automatic deployments from a specific branch.
+You have now successfully deployed the battleships game to Heroku.
