@@ -112,6 +112,7 @@ fortunetely they have all been resolved.
 ## Bug
 ![an image of bug being  encountered](assets/images/bug-found.jpeg) <br>
 While testing the game, i came across this bug. After successfully sinking all the ships, the game  still displays the board and allows further player input. I solved this issue by calling out `start_game` function to if statement.
+___
 
 # Deployment
 This repository contains a Battleship game developed using Python. <br>
@@ -144,6 +145,7 @@ You have successfully created the app required for your deployment.
 21. Once the repository is connected, you can choose to manually deploy from a branch <br> 
 or enable automatic deployments from a specific branch. <br>
 You have now successfully deployed the battleships game to Heroku.
+___
 
 # Technologies Used
 - **Python** to develop the game.
@@ -151,4 +153,16 @@ You have now successfully deployed the battleships game to Heroku.
 - **Github** for repository hosting.
 - **Heroku** for deploying the game.
 - **Lucidchart** for making the flowchart.
-- **Pip Black** for formatting the code to meet pep8 sstandards.
+- **Pip Black** for formatting the code to meet pep8 standards.
+___
+
+# Credits
+## Media
+### Text
+[Patorjk](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20) was used to generate the game logo.
+### Images
+[asciiart](https://www.asciiart.eu/vehicles/boats) is where the battleship art is taken from.
+
+
+
+
