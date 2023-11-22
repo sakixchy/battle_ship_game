@@ -163,6 +163,15 @@ ___
 ### Images
 [asciiart](https://www.asciiart.eu/vehicles/boats) is where the battleship art is taken from.
 
+## Code
+
+[W3Schools](https://www.w3schools.com/python/ref_random_choice.asp) for random function.
+[W3Schools](https://www.w3schools.com/python/python_operators.asp) to learn about the operators.
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/python-time-sleep) for time function.
+[W3Schools](https://www.w3schools.com/python/ref_func_chr.asp) to learn about converting user input to coordinates.
+
+
+
 
 
 
